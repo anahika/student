@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -23,6 +24,29 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.save(s);
         log.debug("Student set successfully.");
         return s;
+    }
+
+    @Override
+    public Student updateStudent(Long id, Student s) {
+        Optional<Student> student = studentRepository.findById(id);
+        if(student.isPresent()){
+            log.debug("updating the existing student.");
+            s.setId(id);
+            return studentRepository.save(s);
+        }
+        log.debug("student not there for given id, creating new user.");
+        return studentRepository.save(s);
+    }
+
+    @Override
+    public void deleteStudent(Long id) {
+        Optional<Student> student = studentRepository.findById(id);
+        if(student.isPresent()) {
+            studentRepository.deleteById(id);
+            return;
+        }
+        log.error("student not found exception.");
+        throw new StudentNotFoundException("student not found.");
     }
 
     @Override

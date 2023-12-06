@@ -11,5 +11,9 @@ public interface StudentService {
 
      Student setStudent(Student s);
 
+     Student updateStudent(Long id, Student s);
+
+     void deleteStudent(Long id);
+
      List<Student> getStudentWithName(String name) throws StudentNotFoundException;
 }

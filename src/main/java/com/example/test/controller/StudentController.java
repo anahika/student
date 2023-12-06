@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/student")
@@ -22,7 +21,7 @@ public class StudentController {
 
     @GetMapping("/name/{name}")
     public ResponseEntity<List<Student>> getStudentForName(@PathVariable String name) {
-        log.info("Got request to get list of students for given name: "+ name);
+        log.debug("Got request to get list of students for given name: "+ name);
         List<Student> student = studentService.getStudentWithName(name);
 
         return new ResponseEntity<>(student, HttpStatus.OK);
@@ -30,13 +29,28 @@ public class StudentController {
 
 
     @PostMapping("/set-student")
-    public ResponseEntity<?> setStudent(@RequestBody Student s){
-        log.info("Got request to set student: "+s);
+    public ResponseEntity<Student> setStudent(@RequestBody Student s){
+        log.debug("Got request to set student: "+s.toString());
         Student student = studentService.setStudent(s);
 
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student s){
+        log.debug("Got request to update student: "+s.toString());
+        Student student = studentService.updateStudent(id, s);
+
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable Long id){
+        log.debug("Got request to delete student with given id: "+id);
+        studentService.deleteStudent(id);
+
+        return new ResponseEntity<>("student deleted successfully", HttpStatus.OK);
+    }
 
 
 }
