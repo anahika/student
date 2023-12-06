@@ -1,11 +1,15 @@
 package com.example.test.service.impl;
 
+import com.example.test.dao.StudentDao;
 import com.example.test.exception.StudentNotFoundException;
 import com.example.test.model.Student;
 import com.example.test.repository.StudentRepository;
 import com.example.test.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +17,7 @@ import java.util.Optional;
 
 @Service
 @Slf4j
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl implements StudentService, UserDetailsService {
 
     @Autowired
     private StudentRepository studentRepository;
@@ -39,11 +43,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudent(Long id) {
+    public Long deleteStudent(Long id) {
         Optional<Student> student = studentRepository.findById(id);
         if(student.isPresent()) {
             studentRepository.deleteById(id);
-            return;
+            log.debug("student deleted successfully");
+            return id;
         }
         log.error("student not found exception.");
         throw new StudentNotFoundException("student not found.");
@@ -60,6 +65,12 @@ public class StudentServiceImpl implements StudentService {
         log.debug("student with given id is: " + student);
         return studentRepository.getByFirstName(name);
 
+    }
+
+    public UserDetails loadUserByUsername(String firstName) throws UsernameNotFoundException {
+        Student student = studentRepository.findByFirstName(firstName)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with name: " + firstName));
+        return StudentDao.build(student);
     }
 
 }

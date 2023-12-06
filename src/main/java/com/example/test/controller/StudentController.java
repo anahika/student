@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/student")
+@RequestMapping("/api/v1/student")
 @Slf4j
 public class StudentController {
 
@@ -47,9 +47,9 @@ public class StudentController {
     @DeleteMapping("delete/{id}")
     public ResponseEntity<String> deleteStudent(@PathVariable Long id){
         log.debug("Got request to delete student with given id: "+id);
-        studentService.deleteStudent(id);
+        Long studentId = studentService.deleteStudent(id);
 
-        return new ResponseEntity<>("student deleted successfully", HttpStatus.OK);
+        return new ResponseEntity<>("student deleted successfully for id: " + studentId, HttpStatus.OK);
     }
 
 

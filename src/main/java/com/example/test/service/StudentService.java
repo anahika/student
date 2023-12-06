@@ -13,7 +13,7 @@ public interface StudentService {
 
      Student updateStudent(Long id, Student s);
 
-     void deleteStudent(Long id);
+     Long deleteStudent(Long id);
 
      List<Student> getStudentWithName(String name) throws StudentNotFoundException;
 }

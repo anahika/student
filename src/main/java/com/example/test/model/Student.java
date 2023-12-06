@@ -1,7 +1,9 @@
 package com.example.test.model;
 
-import jakarta.persistence.*;
+
 import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -17,6 +19,8 @@ public class Student {
     @Column(name = "last-name")
     private String lastName;
     private int age;
+
+    private String password;
 
     public Student(String firstName, String lastName, int age){
         this.firstName=firstName;
