@@ -4,11 +4,12 @@ import com.example.test.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String>{
-     Student findByFirstName(String name);
-     Student getByFirstName(String name);
+     List<Student> getByFirstName(String name);
 
 
 }
