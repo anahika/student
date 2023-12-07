@@ -1,7 +1,6 @@
-package com.example.test.config;
+package com.ak.demo.config;
 
-import com.example.test.service.StudentService;
-import com.example.test.service.impl.StudentServiceImpl;
+import com.ak.demo.service.impl.StudentServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,10 +1,9 @@
-package com.example.test.service.impl;
+package com.ak.demo.service.impl;
 
-import com.example.test.dao.StudentDao;
-import com.example.test.exception.StudentNotFoundException;
-import com.example.test.model.Student;
-import com.example.test.repository.StudentRepository;
-import com.example.test.service.StudentService;
+import com.ak.demo.exception.StudentNotFoundException;
+import com.ak.demo.repository.StudentRepository;
+import com.ak.demo.service.StudentService;
+import com.ak.demo.model.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -70,7 +69,7 @@ public class StudentServiceImpl implements StudentService, UserDetailsService {
     public UserDetails loadUserByUsername(String firstName) throws UsernameNotFoundException {
         Student student = studentRepository.findByFirstName(firstName)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with name: " + firstName));
-        return StudentDao.build(student);
+        return StudentDetailImpl.build(student);
     }
 
 }

@@ -1,7 +1,7 @@
-package com.example.test.controller;
+package com.ak.demo.controller;
 
-import com.example.test.model.Student;
-import com.example.test.service.StudentService;
+import com.ak.demo.model.Student;
+import com.ak.demo.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

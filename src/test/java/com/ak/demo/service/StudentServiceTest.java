@@ -1,10 +1,10 @@
-package com.example.test.service;
+package com.ak.demo.service;
 
 
-import com.example.test.exception.StudentNotFoundException;
-import com.example.test.model.Student;
-import com.example.test.repository.StudentRepository;
-import com.example.test.service.impl.StudentServiceImpl;
+import com.ak.demo.repository.StudentRepository;
+import com.ak.demo.exception.StudentNotFoundException;
+import com.ak.demo.model.Student;
+import com.ak.demo.service.impl.StudentServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -79,7 +79,6 @@ public class StudentServiceTest {
 
     @Test()
     public void deleteStudentTest1() {
-        when(studentRepository.deleteById(any(Long.class))).thenReturn(1L);
         when(studentRepository.findById(any(Long.class))).thenReturn(Optional.empty());
 
         assertThrows(StudentNotFoundException.class, () -> {

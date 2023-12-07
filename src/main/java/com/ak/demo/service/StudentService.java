@@ -1,8 +1,8 @@
-package com.example.test.service;
+package com.ak.demo.service;
 
 
-import com.example.test.exception.StudentNotFoundException;
-import com.example.test.model.Student;
+import com.ak.demo.exception.StudentNotFoundException;
+import com.ak.demo.model.Student;
 
 import java.util.List;
 

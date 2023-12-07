@@ -1,6 +1,6 @@
-package com.example.test.config;
+package com.ak.demo.config;
 
-import com.example.test.dao.StudentDao;
+import com.ak.demo.service.impl.StudentDetailImpl;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +19,7 @@ public class JwtUtils {
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {
-        StudentDao studentDao = (StudentDao) authentication.getPrincipal();
+        StudentDetailImpl studentDao = (StudentDetailImpl) authentication.getPrincipal();
         return Jwts.builder().setSubject((studentDao.getUsername())).setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();

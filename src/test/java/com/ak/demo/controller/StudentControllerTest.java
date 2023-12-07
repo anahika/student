@@ -1,8 +1,7 @@
-package com.example.test.controller;
+package com.ak.demo.controller;
 
-
-import com.example.test.model.Student;
-import com.example.test.service.StudentService;
+import com.ak.demo.model.Student;
+import com.ak.demo.service.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

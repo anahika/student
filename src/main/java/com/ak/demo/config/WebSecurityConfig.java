@@ -1,6 +1,6 @@
-package com.example.test.config;
+package com.ak.demo.config;
 
-import com.example.test.service.impl.StudentServiceImpl;
+import com.ak.demo.service.impl.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

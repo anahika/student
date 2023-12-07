@@ -1,4 +1,4 @@
-package com.example.test.config;
+package com.ak.demo.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;

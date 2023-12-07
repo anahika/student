@@ -1,6 +1,6 @@
-package com.example.test.dao;
+package com.ak.demo.service.impl;
 
-import com.example.test.model.Student;
+import com.ak.demo.model.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @AllArgsConstructor
-public class StudentDao implements UserDetails {
+public class StudentDetailImpl implements UserDetails {
 
     private String userName;
     private String password;
@@ -18,8 +18,8 @@ public class StudentDao implements UserDetails {
         return null;
     }
 
-    public static StudentDao build(Student student) {
-        return new StudentDao(student.getFirstName(), student.getPassword());
+    public static StudentDetailImpl build(Student student) {
+        return new StudentDetailImpl(student.getFirstName(), student.getPassword());
     }
 
     @Override
